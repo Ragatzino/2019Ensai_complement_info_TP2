@@ -1,5 +1,19 @@
 # Complément informatique, 2A, TP1
 
+## Objectif du TP
+
+Apprendre à communiquer avec un webservice (récupération et envoi de données) avec la bibliothèque **requests** ainsi que créer son propre webservice avec la bibliothèque **Flask**
+
+Notions principales abordées :
+
+- Webservice (API)
+- Client-serveur
+
+Notions secondaires :
+
+- injection de code
+- Git
+- webscrapping 
 
 ## Communication Client-Serveur, webservice REST
 
@@ -9,7 +23,10 @@ TODO
 
 ### 1. Côté Client - Appeler un webservice
 
+
+#### 1.1 Préparation
 Ouvrez PyCharm ou VScode et ouvrez le dossier squelette-tp3-client :
+
     - PyCharm :  File > Open > cherchez le dossier
     - VScode : File > Open Foleder > cherchez le dossier
 
@@ -20,19 +37,23 @@ Tous les connections sortantes de l'Ensai passe par un proxy. Ainsi pour le webs
 
 Pour vous créer un compte allez sur le site : https://data.rennesmetropole.fr/explore. Puis en haut à droite cliquez sur Inscription et suivez les étapes. Une fois cela fait connectez-vous, allez dans votre compte (cliquez sur votre nom), puis "clé d'API". Générez une clé et donnez lui le nom que vous voulez. Copiez-collez cette clé dans le fichier properties.py.
  
-Avant de lancer l’exemple, ouvrez le fichier exemple.py. Dans cet exemple nous récupérons les informations depuis une url ( https://
-data.rennesmetropole.fr/….. ). Pour consulter ce que renvoie cette url, nous allons utiliser Insomnia.
+#### 1.2 Insomnia et les requêtes à la main
+ 
+Avant de lancer l’exemple, ouvrez le fichier exemple.py. Dans cet exemple vous récupérez les informations depuis une url ( https://
+data.rennesmetropole.fr/….. ). Pour consulter ce que renvoie cette url, vous allez utiliser Insomnia.
 
 Lancez Insomnia depuis le menu démarrer (Menu démarrer / Informatique / Insomnia). Allez dans le menu application/préférence pour configurer le proxy. Cliquez sur la checkbox Enable Proxy et saisissez dans les champs HTTP Proxy et HTTPS Proxy : 
 
 > http:// pxcache-02.ensai.fr:3128
 
-
-Dans insomnia, cliquez sur le bouton + à gauche > New Requests. Dans la popin qui s’ouvre, mettez comme nom Prêts de DVD puis appuyez sur Create (vous avez un menu déroulant avec GET sélectionné, laissez cette méthode).
+Dans Insomnia, cliquez sur le bouton + à gauche > New Requests. Dans la popin qui s’ouvre, mettez comme nom Prêts de DVD puis appuyez sur Create (vous avez un menu déroulant avec GET sélectionné, laissez cette méthode).
 
 En haut, dans le champ texte à côté de GET, collez l’url ( https://data.rennesmetropole.fr/….. ) qui est présente dans l’exemple puis appuyez sur SEND (pensez à mettre mon api_key dans l'url)
 
 Vous obtenez dans la fenêtre de droite le résultat de la requête.
+
+#### 1.3 Le requêtage avec pyhton
+ 
 Maintenant nous allons lancer la programme, il se base sur 2 librairies :
 - requests (http://docs.python-requests.org/) qui permet d’appeler l’API
 - tabulate (https://pypi.org/project/tabulate/) qui facilite l’affichage des tableaux
@@ -42,9 +63,10 @@ Si cela s'avère nécessaire, installez ces dépendances (présentes dans le fic
 
 > pip install -r requirements.txt --user --proxy http://pxcache-02.ensai.fr:3128
 
-Lancez l’exemple. Vous devriez voir s’afficher la liste des films star wars qui ont  été empruntés. 
+Lancez l’exemple. Vous devriez voir s’afficher la liste des films star wars qui ont été empruntés. 
 
 De façon similaire, vous allez maintenant appeler une autre url pour afficher les arrêts de bus de Bruz accessibles aux personnes à mobilité réduite.
+
 Avec un navigateur, allez sur le site https://data.rennesmetropole.fr/page/home/. Puis dans l’onglet Mes Données, allez sur Données géographiques du réseau STAR : arrêts physiques et enfin sur l’onglet API. En bas de cette page, vous avez l’url pour récupérer les résultats de l’appel. Elle est construite en fonction des paramètres que vous choisissez sur la page. Cliquez dans le menu à gauche sur Bruz (sous Commune (nom)), vous devez constatez que dans l’url un nouveau paramètre a été ajouté : refine.nomcommune=Bruz
 
 Ainsi nous ne récupérons que les arrêts de bus situés à Bruz Vous avez un champs texte sur la page appelé rows, c’est le nombre de résultats de la requête. Par défaut il vaut 10. Saisissez 100 pour récupérer l’ensemble des résultats et cliquez sur le bouton Envoyez en bas. Vous devez constater que dans l’url un nouveau paramètre a été ajouté : rows=100
@@ -55,6 +77,8 @@ Nous voulons récupérer les coordonnées (latitude et longitude) des arrêts de
 
 
 ### 2. Côté Serveur - Construire son API
+
+##### Constuire son API
 
 Ouvrez dans une autre fenêtre le code contenu dans squelette-tp3-serveur.
 - PyCharm : File > Open > New Window
@@ -87,6 +111,8 @@ Vous pouvez remplacer Mon film préféré par le film que vous souhaitez. Une fo
 
 Si vous regardez le code vous verrez une méthode addMovie qui ajoute le film reçu à la liste. Cette métode fait également appel à une DAO pour l'ajouter du film dans le fichier.
 
+#### Injection d'information
+
 Avant d'aller plus loin dans insomnia, faites une nouvelle requête d'ajout avec le json suivant : 
 
 ```js
@@ -97,8 +123,11 @@ Avant d'aller plus loin dans insomnia, faites une nouvelle requête d'ajout avec
 
 Ensuite lancez la requête pour récupérer les films. Essayez de comprendre ce qu'il s'est passé. 
 
-Maintenant que vous avez compris comment fonctionnait le serveur, vous allez ajouter votre propre méthode pour gérer une liste de joueurs qui auront un pseudonyme et un score. Créez les méthodes GET (/joueurs) et POST (/joueur) et testez les appels avec Insomnia.
-Pour gagner du temps vous n'allez pas stockez vos joueurs dans des fichiers n'y créer d'objet joueurs, mais uniquement manipuler une liste de dictionnaires python représentatn les joueurs.
+
+> Pour les correcteurs : ici le but c'est de leur montrer encore une fois le principe d'injection de code. Alors certes on ne va pas faire exécuter du code mais seulement ajouer plus de données que prévu. Dans la DAO les caractères spécifique du CSV ne sont échappés donc on peut "facilement" injecter des données. Je suis sûr qu'en rajoutant des \n on peut également ajouer plusieurs lignes à la fois. Le but c'est les sensibiliser sur le fait que ce qui vient du monde extérieur est potentiellement dangereux. Et qu'il vaut mieux utiliser des outils spécifiques qui vont s'occuper de vérifier nos données et de les insérer que de vouloir tout faire à la main. 
+
+Maintenant que vous avez compris comment fonctionnait le serveur, vous allez ajouter voq propreq méthodeq pour gérer une liste de joueurs qui auront un pseudonyme et un score. Créez les méthodes GET (/joueurs) et POST (/joueur) et testez les appels avec Insomnia.
+Pour gagner du temps vous n'allez pas stockez vos joueurs dans des fichiers n'y créer d'objet joueurs, mais uniquement manipuler une liste de dictionnaires python représentant les joueurs.
 
 ### 3. Communication Client/Serveur
 
@@ -110,4 +139,4 @@ Note : vous pouvez modifier votre méthode POST pour qu’elle prenne un tableau
 
 Nous allons récupérer directement du contenu disponible sur le web. Choisissez une page  wikipedia et affichez le contenu de la balise h1 (le titre de la page). 
 
-Le contenu que vous allez récupérer sera du html, pour extraire le contenu de la balise h1, vous pouvez utiliser la libraire lxml.
+Le contenu que vous allez récupérer sera du html, pour extraire le contenu de la balise h1, vous pouvez utiliser la libraire lxml. Pour cette dernière partie, vous allez devoir regarder la documnetation de la bibliothèque par vous même.
