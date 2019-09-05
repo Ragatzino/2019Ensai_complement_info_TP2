@@ -11,7 +11,7 @@ if __name__ == '__main__':
             'https': properties.https_proxy
         }
 
-        # On prépare les params de la requête. C'est requests qui va les mettre en forme pour nous !
+        # On prépare les params de la requête. On définit les différents paramètres
         params = {'apikey': properties.api_key,
                   'dataset': "equipement-accessibilite-arrets-bus",
                   'facet': 'equip_mobilier',
@@ -23,7 +23,7 @@ if __name__ == '__main__':
                   'refine.nomcommune': 'Bruz',
                   "rows": 100}
 
-        # On envoie une requête poru récupérer les statistiques d'emprunt de films
+        # On effectue une requête http get sur le serveur
         response = requests.get(
             'https://data.rennesmetropole.fr/api/records/1.0/search/',
             params = params,
