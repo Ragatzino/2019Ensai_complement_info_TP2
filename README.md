@@ -103,7 +103,7 @@ JSON. L’url que l’on va utiliser est http://localhost:5000/film. Dans la fen
 
 ```js
 {
-  "title": "Mon film préféré"; "review":""
+  "title": "Mon film préféré"
 }
 ```
 
