@@ -30,4 +30,4 @@ class MovieDao:
     def add(self, movie):
         with open(self.MOVIE_FILE, 'a', encoding="utf-8", newline='') as csv_file:
             if movie.title:
-                csv_file.write(movie.title + "\n")
+                csv_file.write(movie.title +";" + movie.review +  "\n" )
