@@ -80,7 +80,7 @@ Nous voulons récupérer les coordonnées (latitude et longitude) des arrêts de
 
 ##### Constuire son API
 
-Ouvrez dans une autre fenêtre le code contenu dans squelette-tp3-serveur.
+Ouvrez dans une autre fenêtre le code contenu dans squelette-tp2-serveur.
 - PyCharm : File > Open > New Window
 - VS code : File > New Windows > Open Foler 
 
