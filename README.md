@@ -143,4 +143,4 @@ Le contenu que vous allez récupérer sera du html, pour extraire le contenu de 
 
 ## 5. Bonus
 
-Inscrivez vous a l'api foursquare et récupérez des données de manière analogue a la partie client de ce tp :) . 
+Commencez a regarder l'api foursquare et récupérez des données de manière analogue a la partie client de ce tp :) . 
