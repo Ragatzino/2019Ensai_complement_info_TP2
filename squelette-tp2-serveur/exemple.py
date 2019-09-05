@@ -23,7 +23,7 @@ def movieList():
 def addMovie():
     """
     Ajoute une film dans le fichier.
-    :return: {"result" : "sucess"} si aucune erreur ne s'est produite
+    :return: {"result" : "success"} si aucune erreur ne s'est produite
     """
     content = request.get_json()
     movie_to_add = Movie(content["title"])
