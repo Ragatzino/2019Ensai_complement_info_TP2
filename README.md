@@ -1,4 +1,4 @@
-# Complément informatique, 2A, TP1
+# Complément informatique, 2A, TP2
 
 ## Objectif du TP
 
@@ -73,7 +73,7 @@ Ainsi nous ne récupérons que les arrêts de bus situés à Bruz Vous avez un c
 
 Maintenant cliquez sur le lien, un nouvel onglet va s’ouvrir. Récupérez l’url et saisissez là dans Insomnia comme vous l’avez fait précédemment (Cliquez sur +, sur New Request …). Consultez les données qui sont renvoyées par l’url.
 
-Nous voulons récupérer les coordonnées (latitude et longitude) des arrêts de bus accessibles aux personnes à mobilité réduite (pmr). Affichez un tableau listant les coordonnées des arrêts de bus accessibles aux personnes à mobilité réduite avec pour colonnes latitude et longitude. Nous nous contentons d’afficher les coordonnées dans le cadre de ce TP mais nous pourrions les afficher sur une carte avec OpenStreetMap par exemple. 
+Nous voulons récupérer les coordonnées (latitude et longitude) des arrêts de bus accessibles aux personnes à mobilité réduite (pmr). Affichez un tableau listant les coordonnées des arrêts de bus accessibles aux personnes à mobilité réduite avec pour colonnes latitude et longitude. Nous nous contentons d’afficher les coordonnées dans le cadre de ce TP mais nous pourrions les afficher sur une carte avec OpenStreetMap par exemple.  (le filtre est disponible dans le partie1.py)
 
 
 ### 2. Côté Serveur - Construire son API
@@ -140,3 +140,7 @@ Note : vous pouvez modifier votre méthode POST pour qu’elle prenne un tableau
 Nous allons récupérer directement du contenu disponible sur le web. Choisissez une page  wikipedia et affichez le contenu de la balise h1 (le titre de la page). 
 
 Le contenu que vous allez récupérer sera du html, pour extraire le contenu de la balise h1, vous pouvez utiliser la libraire lxml. Pour cette dernière partie, vous allez devoir regarder la documnetation de la bibliothèque par vous même.
+
+## 5. Bonus
+
+Inscrivez vous a l'api foursquare et récupérez des données de manière analogue a la partie client de ce tp :) . 
